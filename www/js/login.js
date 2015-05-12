@@ -34,20 +34,25 @@ angular.module('starter.login', [])
 .controller('LoginCtrl', function($scope,Projects) {
         // A utility function for creating a new project
         // with the given projectTitle
-        var createProject = function(projectTitle,projectPassword) {
-            var newProject = Projects.newProject(projectTitle,projectPassword);
-            $scope.projects.push(newProject);
-            Projects.save($scope.projects);
-            $scope.selectProject(newProject, $scope.projects.length-1);
-            $scope.projectModal.hide();
+        var loginUser = function(userName,userPassword) {
+//            var newProject = Projects.newProject(projectTitle,projectPassword);
+            if(userName=='wind'&&userPassword=='lovej'){
+                alert('Login Success!');
+            }else{
+                alert('Login failure!');
+            }
+//            $scope.projects.push(newProject);
+//            Projects.save($scope.projects);
+//            $scope.selectProject(newProject, $scope.projects.length-1);
+//            $scope.projectModal.hide();
         }
-        // Called to create a new project
-        $scope.newProject = function(project) {
+        // Called to login a user
+        $scope.loginUser = function(user) {
             //var projectTitle = prompt('Project name');
-            var projectTitle = project.title;
-            var projectPassword = project.password;
-            if(projectTitle) {
-                createProject(projectTitle,projectPassword);
+            var userName = user.name;
+            var userPassword = user.password;
+            if(userName) {
+                loginUser(userName,userPassword);
             }
         };
     })
