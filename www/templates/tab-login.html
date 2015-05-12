@@ -1,0 +1,41 @@
+<ion-view view-title="Login">
+    <ion-content class="padding">
+        <form ng-submit="newProject(project)">
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" placeholder="Project Name" ng-model="project.title">
+                </label>
+                <label class="item item-input">
+                    <input type="text" placeholder="Project Password" ng-model="project.password">
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive">Create Project</button>
+            </div>
+        </form>
+        <div class="list card">
+            <ion-checkbox>aaaaa</ion-checkbox>
+            <ion-checkbox>bbbbb</ion-checkbox>
+            <ion-item>
+                <label>sdfsdfs</label>
+                <input title="ddddd">
+            </ion-item>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Health</div>
+            <div class="item item-body">
+                <div>
+                    You ate an apple today!
+                </div>
+            </div>
+        </div>
+        <div class="list card">
+            <div class="item item-divider">Upcoming</div>
+            <div class="item item-body">
+                <div>
+                    You have <b>29</b> meetings on your calendar tomorrow.
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
