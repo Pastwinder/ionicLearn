@@ -1,5 +1,7 @@
 <ion-view view-title="登陆">
     <ion-content class="padding">
+        <ion-refresher on-refresh="doRefresh()" pulling-text="Pull to refresh..." refreshing-text="Refreshing!" refreshing-icon="ion-loading-c">
+        </ion-refresher>
         <form ng-submit="loginUser(user)">
             <div class="list">
                 <label class="item item-input">
@@ -8,10 +10,49 @@
                 <label class="item item-input">
                     <input type="password" placeholder="请输入密码" ng-model="user.password">
                 </label>
+
+
+
             </div>
             <div class="padding">
                 <button type="submit" class="button button-block button-positive">登陆</button>
             </div>
+            <div>
+
+                <ion-list>
+                    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="n in names" type="item-text-wrap" href="#/tab/chats/{{n.newsId}}">
+                        <img ng-src="{{'http://www.shifanglogistics.com.cn/attachFiles/'+n.subjectIcon}}">
+                        <h2>{{n.author}}</h2>
+                        <p>{{n.subject}}</p>
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+
+                        <ion-option-button class="button-assertive" ng-click="remove(n)">
+                            Delete
+                        </ion-option-button>
+                    </ion-item>
+                </ion-list>
+            </div>
         </form>
     </ion-content>
 </ion-view>
+<script>
+    function customersController($scope,$http) {
+        $http.get("http://www.w3cschool.cc/try/angularjs/data/Customers_JSON.php")
+                .success(function(response) {$scope.names = response;});
+    }
+
+    /*
+     $http.get(url,{params:{id:'5'}}) .success(function(response) {
+
+     $scope.names = response;
+
+     }).error(function(data){
+
+     //错误代码
+
+     });
+
+
+     */
+
+</script>

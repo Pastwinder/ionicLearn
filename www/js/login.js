@@ -31,14 +31,23 @@ angular.module('starter.login', [])
         }
     })
 //控制title
-.controller('LoginCtrl', function($scope,Projects) {
+// $http 用于交互数据
+// $timeout 用于下拉刷新超时返回
+.controller('LoginCtrl', function($scope,$http,$timeout) {
         // A utility function for creating a new project
         // with the given projectTitle
         var loginUser = function(userName,userPassword) {
 //            var newProject = Projects.newProject(projectTitle,projectPassword);
-            if(userName=='wind'&&userPassword=='lovej'){
+            if (userName == 'wind' && userPassword == 'lovej') {
                 alert('Login Success!');
-            }else{
+                $http.get("http://www.shifanglogistics.com.cn/htmobile/listNews.do?m_userid=15050&Q_isNotice_SN_EQ=0")
+                    .success(function (response) {
+                        //alert(response);
+                        $scope.names = response.result;
+                    })
+                    .error(function (data) { //错误代码
+                    });
+            } else {
                 alert('Login failure!');
             }
 //            $scope.projects.push(newProject);
@@ -54,6 +63,28 @@ angular.module('starter.login', [])
             if(userName) {
                 loginUser(userName,userPassword);
             }
+        };
+        //删除行方法
+        $scope.remove = function (name) {
+            $scope.names.splice($scope.names.indexOf(name), 1);
+            alert('remove');
+        }
+        //下拉刷新方法
+        $scope.doRefresh = function() {
+
+            console.log('Refreshing!');
+            $timeout( function() {
+
+                $scope.names.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+                $scope.names.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+                $scope.names.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+                $scope.names.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+
+                //Stop the ion-refresher from spinning
+                $scope.$broadcast('scroll.refreshComplete');
+
+            }, 1000);
+
         };
     })
 
