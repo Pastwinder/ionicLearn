@@ -1,0 +1,24 @@
+<ion-view view-title="新闻公告">
+    <ion-content class="padding">
+        <ion-refresher on-refresh="doRefresh()" pulling-text="Pull to refresh..." refreshing-text="Refreshing!" refreshing-icon="ion-loading-c">
+        </ion-refresher>
+        <form ng-submit="loginUser()">
+            <!--<div class="padding">-->
+                <!--<button type="submit" class="button button-block button-positive">登陆</button>-->
+            <!--</div>-->
+            <div>
+                <ion-list>
+                    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="onenews in news" type="item-text-wrap" href="#/tab/news/{{onenews.newsId}}">
+                        <img ng-src="{{'http://www.shifanglogistics.com.cn/attachFiles/'+onenews.subjectIcon}}">
+                        <h2>{{onenews.subject}}</h2>
+                        <p>{{onenews.author}}</p>
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+                        <ion-option-button class="button-assertive" ng-click="remove(onenews)">
+                            Delete
+                        </ion-option-button>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
